@@ -4,7 +4,6 @@ import org.uniquindio.edu.co.poo.model.*;
 
 import javax.swing.*;
 
-
 public class Main {
     public static void main(String[] args) {
         Tienda tienda = new Tienda();
@@ -20,11 +19,15 @@ public class Main {
                             "4. Listar Productos\n" +
                             "5. Listar Clientes\n" +
                             "6. Listar Ventas\n" +
-                            "7. Salir\n\n" +
+                            "7. Eliminar Producto\n" +
+                            "8. Eliminar Cliente\n" +
+                            "9. Actualizar Producto\n" +
+                            "10. Actualizar Cliente\n" +
+                            "11. Salir\n\n" +
                             "Ingrese una opción:"
             );
 
-            if (opcion == null) continue; // Si el usuario cancela, volver al menú.
+            if (opcion == null) continue;
 
             switch (opcion) {
                 case "1":
@@ -46,6 +49,18 @@ public class Main {
                     listarVentas(tienda);
                     break;
                 case "7":
+                    eliminarProducto(tienda);
+                    break;
+                case "8":
+                    eliminarCliente(tienda);
+                    break;
+                case "9":
+                    actualizarProducto(tienda);
+                    break;
+                case "10":
+                    actualizarCliente(tienda);
+                    break;
+                case "11":
                     continuar = false;
                     break;
                 default:
@@ -94,5 +109,35 @@ public class Main {
 
     private static void listarVentas(Tienda tienda) {
         JOptionPane.showMessageDialog(null, tienda.obtenerListaVentas());
+    }
+
+    private static void eliminarProducto(Tienda tienda) {
+        String codigo = JOptionPane.showInputDialog("Ingrese el código del producto a eliminar:");
+        JOptionPane.showMessageDialog(null, tienda.eliminarProducto(codigo));
+    }
+
+    private static void eliminarCliente(Tienda tienda) {
+        String id = JOptionPane.showInputDialog("Ingrese la identificación del cliente a eliminar:");
+        JOptionPane.showMessageDialog(null, tienda.eliminarCliente(id));
+    }
+
+    private static void actualizarProducto(Tienda tienda) {
+        String codigo = JOptionPane.showInputDialog("Ingrese el código del producto a actualizar:");
+        String nuevoNombre = JOptionPane.showInputDialog("Ingrese el nuevo nombre del producto:");
+        double nuevoPrecio = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el nuevo precio del producto:"));
+        String nuevaCategoria = JOptionPane.showInputDialog("Ingrese la nueva categoría:");
+        int nuevoStock = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nuevo stock:"));
+
+        JOptionPane.showMessageDialog(null, tienda.actualizarProducto(codigo, nuevoNombre, nuevoPrecio, nuevaCategoria, nuevoStock));
+    }
+
+    private static void actualizarCliente(Tienda tienda) {
+        String id = JOptionPane.showInputDialog("Ingrese la identificación del cliente a actualizar:");
+        String nuevoNombre = JOptionPane.showInputDialog("Ingrese el nuevo nombre del cliente:");
+        String nuevoTelefono = JOptionPane.showInputDialog("Ingrese el nuevo teléfono:");
+        String nuevaDireccion = JOptionPane.showInputDialog("Ingrese la nueva dirección:");
+        String nuevoEmail = JOptionPane.showInputDialog("Ingrese el nuevo email:");
+
+        JOptionPane.showMessageDialog(null, tienda.actualizarCliente(id, nuevoNombre, nuevoTelefono, nuevaDireccion, nuevoEmail));
     }
 }
