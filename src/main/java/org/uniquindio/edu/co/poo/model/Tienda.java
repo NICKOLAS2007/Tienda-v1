@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Tienda {
-
+    
+    private String nombre;
+    private String nit;
     private ArrayList<Producto> listaProductos = new ArrayList<>();
     private ArrayList<Cliente> listaClientes = new ArrayList<>();
     private ArrayList<Venta> listaVentas = new ArrayList<>();
